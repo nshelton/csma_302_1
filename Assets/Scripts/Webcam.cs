@@ -8,10 +8,14 @@ public class Webcam : MonoBehaviour
 
     [SerializeField] List<string> _devices;
     [SerializeField] int _selectedDevice = 0;
+    [SerializeField] Material _effectMaterial;
 
     private int _currentDevice = 0;
     private WebCamTexture _webcam;
 
+    [SerializeField] [Range(0,1)] float _Invert;
+    [SerializeField] [Range(0, 3)] float _Brightness;
+    [SerializeField] [Range(0, 3)] float _Speed;
 
     void Start()
     {
@@ -39,7 +43,12 @@ public class Webcam : MonoBehaviour
             _webcam.Play();
         }
 
-        Graphics.Blit(_webcam, _output);
+        _effectMaterial.SetFloat("_Invert", _Invert);
+        _effectMaterial.SetFloat("_Brightness", _Brightness);
+        _effectMaterial.SetFloat("_Speed", _Speed);
+        _effectMaterial.SetFloat("_width", _webcam.width);
+        _effectMaterial.SetFloat("_height", _webcam.height);
+        Graphics.Blit(_webcam, _output, _effectMaterial);
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
