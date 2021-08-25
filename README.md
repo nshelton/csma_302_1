@@ -21,7 +21,7 @@ Run the installed "Webcam Input" program. This will turn an NDI feed into a webc
 
 Note: There is a Camera also in the scene, this is just used to see the webcam in Unity and is not necessary for the filter.
 
-webcam -> Unity WebCamTexture -> MyOutputTexture (RenderTexture asset in Unity)  -> NDI sender
+webcam -> Unity WebCamTexture -> (filter shader) -> MyOutputTexture (RenderTexture asset in Unity) -> NDI sender
 
 ## Grading
 
@@ -69,13 +69,13 @@ let me know if you have any questions, many of these effects are for 3D renders 
 (this is also in the syllabus, but consider this an updated version)
 
 1. Disregard what the Syllabus said about Moodle, just submit your work to a branch on github on this repo (branch should be your firstname-lastname)
-When you are finished, "Tag" the commit in git as "Complete". You can still work on it after that if you want, I will just grade the latest  
+When you are finished, "Tag" the commit in git as "Complete". You can still work on it after that if you want, I will just grade the latest commit.
 
 2. The project has to run and all the shaders you are using should compile. If it doesn't I'm not going to try to fix it to grade it, I will just let you know that your project is busted and you have to resubmit.  Every time this happens I'll take off 5%. You have 24 hours from when I return it to get it back in, working. 
 
 3. Late projects will lose 10% every 24 hours they are late, after 72 hours the work gets an F. 
 
-4. Obviously plagarism will not be tolerated, there are a small number of students so I can see all the code, and because it is on git it's oging to be obvious if you copied some else's. If something seems fishy I'll just google your code and easily tell if you copied it, if you haven't credited your sources with comments then you will be penalized and reported. 
+4. Obviously plagarism will not be tolerated, there are a small number of students so I can read all your code. Because it is on git it's obvious if you copied some else's. If youo copoy cde without citing the source in a coomment, this will be considered plagarism. 
 
 
 
