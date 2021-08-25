@@ -1,8 +1,7 @@
 # 1. Basic Video Effect Shaders
 ## Woodbury University CSMA 302 Fall 2021
 
-here we're going to write shaders that will the video coming out of your webcam live for our online class video chat!
-
+here we're going to write shaders that will modify the video coming out of your webcam live for our online class video chat!
 
 The final assignment should be submitted by Friday August 3 at midnight.
 
