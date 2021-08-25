@@ -1,11 +1,16 @@
 # Basic Video Effect Shaders
+## Woodbury University CSMA 302 Fall 2021
+
 here we're going to write shaders that will the video coming out of your webcam live for our online class video chat!
+
 
 The final assignment should be submitted by Friday August 3 at midnight.
 
 ## Setup
 
 install NewTek [NDI tools](https://www.ndi.tv/tools/#download-tools) 
+
+
 Run the installed "Webcam Input" program. This will turn an NDI feed into a webcam.
 
 ## Render Pipeline
@@ -20,6 +25,7 @@ Run the installed "Webcam Input" program. This will turn an NDI feed into a webc
 8. ??? Profit
 
 Note: There is a Camera also in the scene, this is just used to see the webcam in Unity and is not necessary for the filter.
+
 
 webcam -> Unity WebCamTexture -> (filter shader) -> MyOutputTexture (RenderTexture asset in Unity) -> NDI sender
 
