@@ -3,7 +3,7 @@ WU Fall 2021 | CSMA 302 | Lab #1
 # Basic Video Effect Shaders
 
 
-We're going to write somoe shaders that will modify the video coming out of your webcam live for our online class video chat!
+We're going to write some shaders that will modify the video coming out of your webcam live for our online class video chat!
 
 The final assignment should be submitted by Friday August 3 at midnight.
 
@@ -25,7 +25,7 @@ Run the installed "Webcam Input" program. This will turn an NDI feed into a webc
 7. Change your discord settings to use `NewTek NDI Video` as your webcam
 8. ??? Profit
 
-Note: There is a Camera also in the scene, this is just used to see the webcam in Unity and is not necessary for the filter.
+Note: There is also a Camera in the scene, this is just used to display the webcam in Unity and is not necessary for the filter.
 
 
 webcam -> Unity WebCamTexture -> (filter shader) -> MyOutputTexture (RenderTexture asset in Unity) -> NDI sender
@@ -67,10 +67,12 @@ Scanlines
 Pixelize
 
 More inspiration here : 
+
+
 https://github.com/vanruesc/postprocessing
 https://docs.unity3d.com/Manual/PostProcessingOverview.html
 
-let me know if you have any questions, many of these effects are for 3D renders and not really suitable for a webcam Image (for example, fog, SSAO, reflections) or are too copmlicated for the first assignment., but I'd be happy to explain any of them.
+let me know if you have any questions, as many of these effects are for 3D renders and not really suitable for a webcam Image (for example, fog, SSAO, reflections). And many are too complicated for the first assignment, but I'd be happy to explain any of them.
 
 
 ## Submitting 
@@ -83,7 +85,7 @@ When you are finished, "Tag" the commit in git as "Complete". You can still work
 
 3. Late projects will lose 10% every 24 hours they are late, after 72 hours the work gets an F. 
 
-4. Obviously plagarism will not be tolerated, there are a small number of students so I can read all your code. Because it is on git it's obvious if you copied some else's. If youo copoy cde without citing the source in a coomment, this will be considered plagarism. 
+4. Obviously plagarism will not be tolerated, there are a small number of students so I can read all your code. Because it is on git it's obvious if you copied some else's. If you copy code without citing the source in a comment, this will be considered plagarism. 
 
 
 
