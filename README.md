@@ -46,25 +46,25 @@ you are free to copy-paste shader code that you find on the internet for your ef
 
 we'll do a few in class, and you will be responsible for doing the rest on your own.
 
--Brightness
--Contrast
--Blurring
--Sharpening
--Edge Detection
--Hue Rotate
--Grayscale
--Sepia
--Channel Mix - swap Red and Blue, etc
--Tint
--Gradient Overlay
--Chroma Shift
--Image displacement or distortion (sine wave, noiose function, etc)
--Add Noise ( film grain)
--Multiply by another image ( mask)
--Mask with geometric primitive
--Invert
--Scanlines
--Pixelize
+- Brightness
+- Contrast
+- Blurring
+- Sharpening
+- Edge Detection
+- Hue Rotate
+- Grayscale
+- Sepia
+- Channel Mix - swap Red and Blue, etc
+- Tint
+- Gradient Overlay
+- Chroma Shift
+- Image displacement or distortion (sine wave, noiose function, etc)
+- Add Noise ( film grain)
+- Multiply by another image ( mask)
+- Mask with geometric primitive
+- Invert
+- Scanlines
+- Pixelize
 
 More inspiration here : 
 
