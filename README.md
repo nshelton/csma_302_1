@@ -1,9 +1,9 @@
-Woodbury University CSMA 302 Fall 2021
+WU Fall 2021 | CSMA 302 | Lab #1
 ---
-# 1 Basic Video Effect Shaders
+# Basic Video Effect Shaders
 
 
-here we're going to write shaders that will modify the video coming out of your webcam live for our online class video chat!
+We're going to write somoe shaders that will modify the video coming out of your webcam live for our online class video chat!
 
 The final assignment should be submitted by Friday August 3 at midnight.
 
@@ -32,11 +32,12 @@ webcam -> Unity WebCamTexture -> (filter shader) -> MyOutputTexture (RenderTextu
 
 ## Grading
 
-You will implement 10 image filters on the webcam. These could be triggered by sliders in the Inspector, or keyboard keys, MIDI ???  whatever you feel like
+You will implement 10 image filters on the webcam. These could be triggered by sliders in the Inspector, or keyboard keys, MIDI ???  whatever you feel like.
 
-8 points per effect implemented (up to 10)
+7 points per effect implemented (up to 10)
 10 points for project organization ( top-level folders),  short README describing the effects and how the UI works.
 10 points for code organization (indentation, comments, descriptive variable names, creating functions for each effect)
+10 points for creativity in your effects. They don't all have to be creative, just get weird with some of them. 
 
 you are free to copy-paste shader code that you find on the internet for your effects, just be sure that you include a link to the site it is from. But the entire effect cannot be copy-pasted, just helper functions like HSVtoRGB or something like that. you have to do something else to the output besides 
 
