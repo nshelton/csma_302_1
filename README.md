@@ -5,7 +5,7 @@ WU Fall 2021 | CSMA 302 | Lab #1
 
 We're going to write some shaders that will modify the video coming out of your webcam live for our online class video chat!
 
-The final assignment should be submitted by Friday August 3 at midnight.
+The final assignment should be submitted by Sunday August 5 at midnight.
 
 ## Setup
 
