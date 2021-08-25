@@ -1,5 +1,7 @@
-# 1. Basic Video Effect Shaders
-## Woodbury University CSMA 302 Fall 2021
+Woodbury University CSMA 302 Fall 2021
+---
+# 1 Basic Video Effect Shaders
+
 
 here we're going to write shaders that will modify the video coming out of your webcam live for our online class video chat!
 
@@ -14,8 +16,8 @@ Run the installed "Webcam Input" program. This will turn an NDI feed into a webc
 
 ## Render Pipeline
 
-1. In the Unity project, the webcam comes in through the `Webcam` Script on the `Webcam` GameObject. 
-2. Hit Play
+1. Open the Main scene, hit Play
+2. the webcam comes in through the `Webcam` Script on the `Webcam` GameObject. 
 3. You'll need to set the "Selected Device" to the webcam you want to use.
 4. Inside the webcam script, the image is copied into a texture called `MyOutputTexture` using `Graphics.Blit()`
 5. The `NDI Sender` component takes the `MyOutputTexture`  and sends it over NDI
