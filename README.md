@@ -1,94 +1,31 @@
-WU Fall 2021 | CSMA 302 | Lab #1
----
-# Basic Video Effect Shaders
+# HShader
 
+## Pixellate
+This effect applies a "mosaic" effect to the input texture. I added a slider that allows the user to control the intensity or block size of the mosaic. There's also a checkbox to enable and disable the effect.
 
-We're going to write some shaders that will modify the video coming out of your webcam live for our online class video chat!
+## Color Swap
+Color swap enables the user to pick one color of their choice to replace with another color of their choice using two color pickers. I also included a tolerance slider, which enables colors that are similar to the original color to be replaced. This effect also includes a checkbox to toggle it on and off.
 
-The final assignment should be submitted by Sunday August 5 at midnight.
+## Color Key
+This effect is similar to color swap, but you can replace the "original color" parameter in Color Swap with a texture instead. It behaves just like a greenscreen would.
 
-## Setup
+## Grayscale
+This is a simple grayscale slider, you can use it to transition the image from it's original colors to a full greyscale image. This also behaves like a saturation slider.
 
-install NewTek [NDI tools](https://www.ndi.tv/tools/#download-tools) 
+## Hue Slider
+This effect speaks for itself. Using the slider, you can modify the hue of the input image.
 
+## Invert
+This effect is an invert slider. Using the slider, you can mix the image between its original colors and a fully inverted version of the original colors.
 
-Run the installed "Webcam Input" program. This will turn an NDI feed into a webcam.
+## Contrast
+This is a contrast slider. It uses a simple contrast algorithm and allows the user to increase or decrease the contrast of the image.
 
-## Render Pipeline
+## Sepia
+This effect simulates a sepia filter. The sepia filter adds a warm effect to the input image and can be toggled on and off with a checkbox.
 
-1. Open the Main scene, hit Play
-2. the webcam comes in through the `Webcam` Script on the `Webcam` GameObject. 
-3. You'll need to set the "Selected Device" to the webcam you want to use.
-4. Inside the webcam script, the image is copied into a texture called `MyOutputTexture` using `Graphics.Blit()`
-5. The `NDI Sender` component takes the `MyOutputTexture`  and sends it over NDI
-6. The "Webcam Input" NDI utility program takes the texture and sends the vide stream as a virtual webcam. You have to go into the tray and be sure Unity is selected)
-7. Change your discord settings to use `NewTek NDI Video` as your webcam
-8. ??? Profit
+## Film Grain
+This effect simulates the grainy effect that's sometimes used in movies, like Fight Club. It can be toggled on and off using the checkbox.
 
-Note: There is also a Camera in the scene, this is just used to display the webcam in Unity and is not necessary for the filter.
-
-
-webcam -> Unity WebCamTexture -> (filter shader) -> MyOutputTexture (RenderTexture asset in Unity) -> NDI sender
-
-## Grading
-
-You will implement 10 image filters on the webcam. These could be triggered by sliders in the Inspector, or keyboard keys, MIDI ???  whatever you feel like.
-
-7 points per effect implemented (up to 10)
-10 points for project organization ( top-level folders),  short README describing the effects and how the UI works.
-10 points for code organization (indentation, comments, descriptive variable names, creating functions for each effect)
-10 points for creativity in your effects. They don't all have to be creative, just get weird with some of them. 
-
-you are free to copy-paste shader code that you find on the internet for your effects, just be sure that you include a link to the site it is from. But the entire effect cannot be copy-pasted, just helper functions like HSVtoRGB or something like that. you have to do something else to the output besides 
-
-
-## Filter Ideas
-
-we'll do a few in class, and you will be responsible for doing the rest on your own.
-
-- Brightness
-- Contrast
-- Blurring
-- Sharpening
-- Edge Detection
-- Hue Rotate
-- Grayscale
-- Sepia
-- Channel Mix - swap Red and Blue, etc
-- Tint
-- Gradient Overlay
-- Chroma Shift
-- Image displacement or distortion (sine wave, noiose function, etc)
-- Add Noise ( film grain)
-- Multiply by another image ( mask)
-- Mask with geometric primitive
-- Invert
-- Scanlines
-- Pixelize
-
-More inspiration here : 
-
-
-https://github.com/vanruesc/postprocessing
-https://docs.unity3d.com/Manual/PostProcessingOverview.html
-
-let me know if you have any questions, as many of these effects are for 3D renders and not really suitable for a webcam Image (for example, fog, SSAO, reflections). And many are too complicated for the first assignment, but I'd be happy to explain any of them.
-
-
-## Submitting 
-(this is also in the syllabus, but consider this an updated version)
-
-1. Disregard what the Syllabus said about Moodle, just submit your work to a branch on github on this repo (branch should be your firstname-lastname)
-When you are finished, "Tag" the commit in git as "Complete". You can still work on it after that if you want, I will just grade the latest commit.
-
-2. The project has to run and all the shaders you are using should compile. If it doesn't I'm not going to try to fix it to grade it, I will just let you know that your project is busted and you have to resubmit.  Every time this happens I'll take off 5%. You have 24 hours from when I return it to get it back in, working. 
-
-3. Late projects will lose 10% every 24 hours they are late, after 72 hours the work gets an F. 
-
-4. Obviously plagarism will not be tolerated, there are a small number of students so I can read all your code. Because it is on git it's obvious if you copied some else's. If you copy code without citing the source in a comment, this will be considered plagarism. 
-
-
-
-
-
-
+## Old TV
+This is my favorite effect, and it simulates the look of an old CRT tv. It features scanlines and also has a small ghost effect to the image to add to the immersion. It can be toggled on and off using a checkbox.
