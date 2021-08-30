@@ -15,7 +15,9 @@ public class Webcam : MonoBehaviour
 
 
     [SerializeField] [Range(0,1)] float _Invert;
-
+    [SerializeField] [Range(0,100)] float _shift;
+    [SerializeField] [Range(0,1)] float _Blur;
+    [SerializeField] [Range(0,0.1f)] float _displace;
 
     void Start()
     {
@@ -44,7 +46,10 @@ public class Webcam : MonoBehaviour
         }
 
         _effectMaterial.SetFloat("_Invert", _Invert);
-
+        _effectMaterial.SetFloat("_shift", _shift);
+        _effectMaterial.SetFloat("_Blur", _Blur);
+        _effectMaterial.SetFloat("_displace", _displace);
+        
         _effectMaterial.SetFloat("_width", _webcam.width);
         _effectMaterial.SetFloat("_height", _webcam.height);
 
