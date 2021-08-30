@@ -8,6 +8,7 @@ public class Webcam : MonoBehaviour
 
     [SerializeField] List<string> _devices;
     [SerializeField] int _selectedDevice = 0;
+    [SerializeField] Material _effectMaterial;
 
     private int _currentDevice = 0;
     private WebCamTexture _webcam;
@@ -39,7 +40,7 @@ public class Webcam : MonoBehaviour
             _webcam.Play();
         }
 
-        Graphics.Blit(_webcam, _output);
+        Graphics.Blit(_webcam, _output, _effectMaterial);
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
