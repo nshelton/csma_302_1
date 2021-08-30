@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Effect
   m_Shader: {fileID: 4800000, guid: 9a76c94f3e6187748b0c72003aca408f, type: 3}
-  m_ShaderKeywords: BLUR_ENABLED COLOR_KEY_ENABLED PIXELATE _PIXELATE_ON
+  m_ShaderKeywords: BLUR_ENABLED COLOR_KEY_ENABLED COLOR_SWAP_ENABLED PIXELATE _PIXELATE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -41,8 +41,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _KeyTex:
         m_Texture: {fileID: 2800000, guid: 0ee376c8765313c4f915c0496db24e1a, type: 3}
-        m_Scale: {x: -2.56, y: 1}
-        m_Offset: {x: 2.92, y: 0.38}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -63,9 +63,9 @@ Material:
     - _BlurEnabled: 1
     - _BumpScale: 1
     - _ColorKeyEnabled: 1
-    - _ColorSwapEnabled: 0
-    - _ColorSwapIntensity: 0.357
-    - _Contrast: 0.16
+    - _ColorSwapEnabled: 1
+    - _ColorSwapIntensity: 0.271
+    - _Contrast: -0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -74,17 +74,17 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Grayscale: 0.03
+    - _Grayscale: 0.138
     - _GrayscaleEnabled: 0
     - _HueSlider: 0
-    - _Invert: 0
+    - _Invert: 0.025
     - _Metallic: 0
     - _Mode: 0
     - _OGTVEnabled: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Pixelate: 0
-    - _PixelateAmount: 100
+    - _PixelateAmount: 61.2
     - _PixelateEnabled: 0
     - _SepiaEnabled: 0
     - _SmoothnessTextureChannel: 0
@@ -94,7 +94,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorSwap1: {r: 0.67058825, g: 0.67058825, b: 0.654902, a: 1}
+    - _ColorSwap1: {r: 0.90196085, g: 0.882353, b: 0.854902, a: 1}
     - _ColorSwap2: {r: 0, g: 1, b: 0.06357694, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

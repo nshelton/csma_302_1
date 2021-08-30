@@ -80,6 +80,7 @@ Shader "Hidden/HShader"
 
             sampler2D _MainTex;
             sampler2D _KeyTex;
+            float4 _KeyTex_ST;
 
             float _PixelateEnabled;
             float _PixelateAmount = 0;
@@ -150,7 +151,8 @@ Shader "Hidden/HShader"
 
                         if (_ColorKeyEnabled == 1) {
                             // Switch the cam pixel color to the key texture's pixel color.
-                            fixed4 keycol = tex2D(_KeyTex, i.uv);
+                            float2 keyuv = i.uv * _KeyTex_ST.xy + _KeyTex_ST.zw;
+                            fixed4 keycol = tex2D(_KeyTex, keyuv);
                             col.rgb = keycol.rgb;
                         }
                         else {
