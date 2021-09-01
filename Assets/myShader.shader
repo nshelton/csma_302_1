@@ -58,16 +58,53 @@ Shader "Hidden/myShader"
             float _Blur;
             float _displace;
 
-            fixed4 blur(float2 uv) {
-                fixed4 average = fixed4(0, 0, 0, 0);
+            float _kernel[9];
 
-                float2 pixelSize = float2(1.0 / _width, 1.0 / _height);
-                
-                for (int i = -10; i <= 10; i++) {
-                    average += tex2D(_MainTex, uv + pixelSize * i);
+           // float kernel[5] = { 0.06136,	    0.24477,	0.38774,	0.24477,	0.06136 };
+           // float kernel[5] = {0.2, 0.2, 0.2, 0.2, 0.2};
+
+
+            fixed4 kernel3x3(float2 uv) {
+                fixed4 sum = fixed4(0, 0, 0, 0);
+
+                float2 pixelSizeX = float2(1.0 / _width, 0);
+                float2 pixelSizeY = float2(0, 1.0 / _height);
+
+                int index = 0;
+
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        sum += _kernel[index] * tex2D(_MainTex, uv + pixelSizeX * i + pixelSizeY * j);
+                        index++;
+                    }
                 }
 
-                return average / 21.0;
+                return sum;
+            }
+
+
+            fixed4 blurH(float2 uv) {
+                fixed4 sum = fixed4(0, 0, 0, 0);
+
+                float2 pixelSize = float2(1.0 / _width, 0);
+                
+                for (int i = -1; i <= 1; i++) {
+                    sum += _kernel[i + 1] * tex2D(_MainTex, uv + pixelSize * i);
+                }
+
+                return sum;
+            }
+
+            fixed4 blurV(float2 uv) {
+                fixed4 sum = fixed4(0, 0, 0, 0);
+
+                float2 pixelSize = float2(0, 1.0 / _height);
+
+                for (int i = -1; i <= 1; i++) {
+                    sum += _kernel[i + 1] * tex2D(_MainTex, uv + pixelSize * i);
+                }
+
+                return sum;
             }
 
             fixed4 displace(float2 uv) {
@@ -85,21 +122,14 @@ Shader "Hidden/myShader"
             fixed4 frag (v2f i) : SV_Target
             {
 
-                float2 offset = float2(_shift/ _width, 0);
+                fixed4 col = tex2D(_MainTex, i.uv);
 
-                float colorR = tex2D(_MainTex, i.uv + offset).r;
-                float colorG = tex2D(_MainTex, i.uv).g;
-                float colorB = tex2D(_MainTex, i.uv - offset).b;
+                //col = lerp(col, blurH(i.uv), _Blur);
+                //col = lerp(col, blurV(i.uv), _Blur);
 
-                fixed4 col = fixed4(colorR, colorG, colorB, 1);
-
-                col.rgb = lerp(col.bgr, 1 - col.rgb, _Invert);
+                col = lerp(col, kernel3x3(i.uv), _Blur);
 
                 col *= _Brightness;
-
-                //col = lerp(col, blur(i.uv), _Blur);
-
-                col = lerp(col, displace(i.uv), _Blur);
 
                 return col;
             }

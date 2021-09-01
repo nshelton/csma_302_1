@@ -282,6 +282,18 @@ MonoBehaviour:
   _effectMaterial: {fileID: 2100000, guid: b1254e0f0bc67c246b6a44a295c47160, type: 2}
   _Invert: 0
   _shift: 0
+  _Blur: 0
+  _displace: 0
+  _kernel:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &1816892654
 Transform:
   m_ObjectHideFlags: 0

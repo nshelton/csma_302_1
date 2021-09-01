@@ -19,6 +19,8 @@ public class Webcam : MonoBehaviour
     [SerializeField] [Range(0,1)] float _Blur;
     [SerializeField] [Range(0,0.1f)] float _displace;
 
+    [SerializeField] float[] _kernel;
+
     void Start()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
@@ -53,7 +55,10 @@ public class Webcam : MonoBehaviour
         _effectMaterial.SetFloat("_width", _webcam.width);
         _effectMaterial.SetFloat("_height", _webcam.height);
 
+        _effectMaterial.SetFloatArray("_kernel", _kernel);
+
         Graphics.Blit(_webcam, _output, _effectMaterial);
+
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
