@@ -53,6 +53,7 @@ Shader "Hidden/myShader"
             float _height;
             float _Contrast;
             float _Grain;
+            float _Shift;
 
 
 
@@ -68,12 +69,17 @@ Shader "Hidden/myShader"
                 return average / 11.0;
             }
 
+            //half3 AdjustContrastCurve(half3 color, half contrast) {
+              //  return pow(abs(color * 2 - 1), 1 / max(contrast, 0.0001)) * sign(color - 0.5) + 0.5;
+            //}
 
-
+            half3 AdjustContrast(half3 color, half contrast) {
+                 return saturate(lerp(half3(0.5, 0.5, 0.5), color, contrast));
+                }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 offset = float2(20.0 / _width, 0);
+                float2 offset = float2(_Shift / _width, 0);
 
                 float colorR = tex2D(_MainTex, i.uv + offset).r;
                 float colorG = tex2D(_MainTex, i.uv).g;
@@ -85,6 +91,7 @@ Shader "Hidden/myShader"
                 // just invert the colors
                 
                 col.rgb = lerp(col.rgb, 1 - col.rgb, _Invert);
+                col.rgb = AdjustContrast(col.rgb, _Contrast);
 
                 //col *= _Tint;
 

@@ -18,6 +18,8 @@ public class Webcam : MonoBehaviour
     [SerializeField] [Range(0, 3)] float _Speed;
     [SerializeField] [Range(0, 3)] float _Blur;
     [SerializeField] [Range(0, 1)] float _Grain;
+    [SerializeField] [Range(0, 4)] float _Contrast;
+    [SerializeField] [Range(0, 20)] float _Shift;
 
     void Start()
     {
@@ -52,6 +54,8 @@ public class Webcam : MonoBehaviour
         _effectMaterial.SetFloat("_height", _webcam.height);
         _effectMaterial.SetFloat("_Blur", _Blur);
         _effectMaterial.SetFloat("_Grain", _Grain);
+        _effectMaterial.SetFloat("_Contrast", _Contrast);
+        _effectMaterial.SetFloat("_Shift", _Shift);
         Graphics.Blit(_webcam, _output, _effectMaterial);
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
