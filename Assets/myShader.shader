@@ -6,6 +6,8 @@ Shader "Hidden/myShader"
         _Invert ("invert", Range(0,1)) = 1
         _Brightness("brightness", Range(0,3)) = 1
         _Speed("speed", Range(0,3)) = 1
+        _Contrast("constrast", Range(0,1)) = 1
+        _Tint("tint", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -19,6 +21,7 @@ Shader "Hidden/myShader"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "Packages/jp.keijiro.noiseshader/Shader/SimplexNoise2D.hlsl"
 
             struct appdata
             {
@@ -31,6 +34,8 @@ Shader "Hidden/myShader"
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
+
+            half4 _Tint;
 
             v2f vert (appdata v)
             {
@@ -46,12 +51,15 @@ Shader "Hidden/myShader"
             float _Speed;
             float _width;
             float _height;
+            float _Contrast;
+            float _Grain;
+
 
 
             fixed4 blur(float2 uv) {
                 fixed4 average = fixed4(0, 0, 0, 0);
 
-                float2 offset = float2(1.0 / _width, 0);
+                float2 offset = float2(1.0 / _width, 1.0 / _height);
 
                 for (int i = -5; i <= 5; i++) {
                     average += tex2D(_MainTex, uv + offset * i);
@@ -72,14 +80,18 @@ Shader "Hidden/myShader"
                 float colorB = tex2D(_MainTex, i.uv - offset).b;
 
                 fixed4 col = fixed4(colorR, colorG, colorB, 1);
-                ///col = col + col2;
+                //col = col + col2;
 
                 // just invert the colors
                 
                 col.rgb = lerp(col.rgb, 1 - col.rgb, _Invert);
 
-                ///col *= _Brightness;
-                ///col *= ((sin(_Time.z) + 1) / 2) * _Speed;
+                //col *= _Tint;
+
+                //col *= _Brightness;
+                //col *= ((sin(_Time.z) + 1) / 2) * _Speed;
+
+                col.rgb += float3(SimplexNoise(i.uv * 15), SimplexNoise(i.uv * 15 + 999.9), SimplexNoise(i.uv * 15 + 124.5)) * _Grain;
 
                 return col;
             }
