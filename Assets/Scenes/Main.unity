@@ -281,7 +281,14 @@ MonoBehaviour:
   - 
   _selectedDevice: 1
   _effectMaterial: {fileID: 2100000, guid: 4bf8431d44cdf3140b7c4c0b3a6b1080, type: 2}
+  _Brightness: 1.04
   _Invert: 0
+  _Shift: 0
+  _VhsCam: 0
+  _Grayscale: 0
+  _RedOverlay: 0
+  _Blur: 0
+  _Displace: 0
 --- !u!4 &1816892654
 Transform:
   m_ObjectHideFlags: 0

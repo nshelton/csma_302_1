@@ -14,8 +14,16 @@ public class Webcam : MonoBehaviour
     private int _currentDevice = 0;
     private WebCamTexture _webcam;
 
+    [SerializeField] [Range(0, 5)] float _Brightness;
     [SerializeField] [Range(0, 1)] float _Invert;
-
+    [SerializeField] [Range(0, 10)] float _Shift;
+    [SerializeField] [Range(0, 1)] float _CamTransition;
+    [SerializeField] [Range(0, 1)] float _Perspective;
+    [SerializeField] [Range(0, 1)] float _Grayscale;
+    [SerializeField] [Range(0, 1)] float _RedOverlay;
+    [SerializeField] [Range(0, 1)] float _Blur;
+    [SerializeField] [Range(0, 1.0f)] float _Displace;
+    
     void Start()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
@@ -41,10 +49,19 @@ public class Webcam : MonoBehaviour
             _webcam = new WebCamTexture(_devices[_currentDevice]);
             _webcam.Play();
         }
-
+        
+        _effectMaterial.SetFloat("_Brightness", _Brightness);
         _effectMaterial.SetFloat("_Invert", _Invert);
-        _effectMaterial.SetFloat("_width", _webcam.width);
-        _effectMaterial.SetFloat("_height", _webcam.height);
+        _effectMaterial.SetFloat("_Shift", _Shift);
+        _effectMaterial.SetFloat("_CamTransition", _CamTransition);
+        _effectMaterial.SetFloat("_Perspective", _Perspective);
+        _effectMaterial.SetFloat("_Grayscale", _Grayscale);
+        _effectMaterial.SetFloat("_RedOverlay", _RedOverlay);
+        _effectMaterial.SetFloat("_Blur", _Blur);
+        _effectMaterial.SetFloat("_Displace", _Displace);
+
+        _effectMaterial.SetFloat("_Width", _webcam.width);
+        _effectMaterial.SetFloat("_Height", _webcam.height);
         Graphics.Blit(_webcam, _output, _effectMaterial);
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
