@@ -3,8 +3,6 @@ Shader "cameraEffects"
     Properties
     {
         _MainTex("Texture", 2D) = "white" {}
-        _Brightness("Brightness", Range(0,5)) = 1
-        _Invert("Invert", Range(0,1)) = 1
     }
     SubShader
     {
@@ -40,18 +38,18 @@ Shader "cameraEffects"
             }
 
             sampler2D _MainTex;
-            float _Invert;
-            float _Brightness;
-            float _Speed;
             float _Height;
             float _Width;
+            float _Brightness;
+            float _Invert;
             float _Blur;
-            float _Shift;
-            float _CamTransition;
-            float _Perspective;
-            float _Displace;
-            float _Grayscale;
             float _RedOverlay;
+            float _Grayscale;
+            float _Noise;
+            float _Shift;
+            float _Displace;
+            float _Perspective;
+            float _CamTransition;
 
             fixed4 blur(float2 uv) {
                 fixed4 average = fixed4(0, 0, 0, 0);
@@ -64,9 +62,19 @@ Shader "cameraEffects"
                 return average / 11.0;
             }
 
-            fixed4 displace(float2 uv) {
-                float2 displacement = _Displace * float2(sin(_Time.z + uv.y * 10 ), 0.0);
-                return tex2D(_MainTex, uv + displacement);
+            fixed4 redOverlay(fixed4 color) {
+                float b = color.b;
+                return fixed4(1, b, b, 1);
+            }
+
+            fixed4 grayscale(fixed4 color) {
+                float b = color;
+                return fixed4(b, b, b, 1);
+            }
+
+            fixed4 noise(float2 uv) {
+                float2 grain = _Noise * float4(1, 1, 0, 1);
+                return tex2D(_MainTex, uv + grain);
             }
 
             fixed4 shift(float2 uv) {
@@ -78,9 +86,9 @@ Shader "cameraEffects"
                 return colorShift;
             }
 
-            fixed4 camTransition(float2 uv) {
-                float2 transition = _CamTransition * float2(tan(_Time.z + uv.x * 0.3), 0.0);
-                return tex2D(_MainTex, uv + transition);
+            fixed4 displace(float2 uv) {
+                float2 displacement = _Displace * float2(sin(_Time.z + uv.y * 10 ), 0.0);
+                return tex2D(_MainTex, uv + displacement);
             }
 
             fixed4 perspective(float2 uv) {
@@ -89,35 +97,30 @@ Shader "cameraEffects"
 
                 for (int i = -5; i <= 5; i++) {
                     fixedVal += tex2D(_MainTex, i * uv + offset);
-                    //fixedVal += tex2D(_MainTex,  uv - offset - i);
                 }
 
                 return fixedVal / 19.0;
             }
 
-            fixed4 grayscale(fixed4 color) {
-                float b = color;
-                return fixed4(b, b, b, 1);
-            }
-
-            fixed4 redOverlay(fixed4 color) {
-                float b = color.b;
-                return fixed4(1, b, b, 1);
+            fixed4 camTransition(float2 uv) {
+                float2 transition = _CamTransition * float2(tan(_Time.z + uv.x * 0.3), 0.0);
+                return tex2D(_MainTex, uv + transition);
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
                fixed4 col = tex2D (_MainTex, i.uv);
 
+                col *= _Brightness;
                 col = lerp(col, 1 - col, _Invert);
-                col = lerp(col, shift(i.uv), _Shift);
-                col = lerp(col, camTransition(i.uv), _CamTransition);
                 col = lerp(col, blur(i.uv), _Blur);
+                col = lerp(col, redOverlay(col), _RedOverlay);
+                col = lerp(col, grayscale(col), _Grayscale);
+                col = lerp(col, noise(col), _Noise);
+                col = lerp(col, shift(i.uv), _Shift);
                 col = lerp(col, displace(i.uv), _Displace);
                 col = lerp(col, perspective(i.uv), _Perspective);
-                col = lerp(col, grayscale(col), _Grayscale);
-                col = lerp(col, redOverlay(col), _RedOverlay);
-                col *= _Brightness;
+                col = lerp(col, camTransition(i.uv), _CamTransition);
 
                 return col;
             }

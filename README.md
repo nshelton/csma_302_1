@@ -1,93 +1,36 @@
-WU Fall 2021 | CSMA 302 | Lab #1
+Chanel's Shaders
 ---
-# Basic Video Effect Shaders
+Note: All effects are controlled by sliders in the Inspector of the webcam.
 
+## Brightness
+Brightness allows the user to adjust the how much light comes into the camera.
 
-We're going to write some shaders that will modify the video coming out of your webcam live for our online class video chat!
+## Invert 
+The invert shader flips the dark areas to light and the light areas to dark.
 
-The final assignment should be submitted by Sunday August 5 at midnight.
+## Blur 
+This blur effect is not too dramatic. The effect will slightly blur the image output horizontally and vertically.
 
-## Setup
+## Red Overlay 
+Red overlay will display the red tones of the image output.
 
-install NewTek [NDI tools](https://www.ndi.tv/tools/#download-tools) 
+## Grayscale
+Grayscale will take the RGB values of the camera view, and it will adjust the values to get a reasonable gray color.
 
+## Noise 
+The noise effect will change the regular camera view to a very noisey/grainy image. Similarly, this shader can be compared to the images of some comics.
 
-Run the installed "Webcam Input" program. This will turn an NDI feed into a webcam.
+## Shift 
+Shift will shift offset the RGB values. From this, the user can see that the red and blue values will shift to either the left or right, and the green values will remain in its original place.
 
-## Render Pipeline
+## Displace 
+The displace shader will output an overlay that moves in the direction of a sin curve.
 
-1. Open the Main scene, hit Play
-2. the webcam comes in through the `Webcam` Script on the `Webcam` GameObject. 
-3. You'll need to set the "Selected Device" to the webcam you want to use.
-4. Inside the webcam script, the image is copied into a texture called `MyOutputTexture` using `Graphics.Blit()`
-5. The `NDI Sender` component takes the `MyOutputTexture`  and sends it over NDI
-6. The "Webcam Input" NDI utility program takes the texture and sends the vide stream as a virtual webcam. You have to go into the tray and be sure Unity is selected)
-7. Change your discord settings to use `NewTek NDI Video` as your webcam
-8. ??? Profit
+## Perspective 
+Perspective will output an effect that is most similar to a human's point of view. For example, when an individual is standing in the middle of a path, the path they are closest to appears to be much larger; however, the path that is further appears to me much smaller. From this example, one can see how this shader will output an individual's point of view in a diagonal motion.
 
-Note: There is also a Camera in the scene, this is just used to display the webcam in Unity and is not necessary for the filter.
-
-
-webcam -> Unity WebCamTexture -> (filter shader) -> MyOutputTexture (RenderTexture asset in Unity) -> NDI sender
-
-## Grading
-
-You will implement 10 image filters on the webcam. These could be triggered by sliders in the Inspector, or keyboard keys, MIDI ???  whatever you feel like.
-
-7 points per effect implemented (up to 10)
-10 points for project organization ( top-level folders),  short README describing the effects and how the UI works.
-10 points for code organization (indentation, comments, descriptive variable names, creating functions for each effect)
-10 points for creativity in your effects. They don't all have to be creative, just get weird with some of them. 
-
-you are free to copy-paste shader code that you find on the internet for your effects, just be sure that you include a link to the site it is from. But the entire effect cannot be copy-pasted, just helper functions like HSVtoRGB or something like that. you have to do something else to the output besides 
-
-
-## Filter Ideas
-
-we'll do a few in class, and you will be responsible for doing the rest on your own.
-
-- Brightness
-- Contrast
-- Blurring
-- Sharpening
-- Edge Detection
-- Hue Rotate
-- Grayscale
-- Sepia
-- Channel Mix - swap Red and Blue, etc
-- Tint
-- Gradient Overlay
-- Chroma Shift
-- Image displacement or distortion (sine wave, noiose function, etc)
-- Add Noise ( film grain)
-- Multiply by another image ( mask)
-- Mask with geometric primitive
-- Invert
-- Scanlines
-- Pixelize
-
-More inspiration here : 
-
-
-https://github.com/vanruesc/postprocessing
-https://docs.unity3d.com/Manual/PostProcessingOverview.html
-
-let me know if you have any questions, as many of these effects are for 3D renders and not really suitable for a webcam Image (for example, fog, SSAO, reflections). And many are too complicated for the first assignment, but I'd be happy to explain any of them.
-
-
-## Submitting 
-(this is also in the syllabus, but consider this an updated version)
-
-1. Disregard what the Syllabus said about Moodle, just submit your work to a branch on github on this repo (branch should be your firstname-lastname)
-When you are finished, "Tag" the commit in git as "Complete". You can still work on it after that if you want, I will just grade the latest commit.
-
-2. The project has to run and all the shaders you are using should compile. If it doesn't I'm not going to try to fix it to grade it, I will just let you know that your project is busted and you have to resubmit.  Every time this happens I'll take off 5%. You have 24 hours from when I return it to get it back in, working. 
-
-3. Late projects will lose 10% every 24 hours they are late, after 72 hours the work gets an F. 
-
-4. Obviously plagarism will not be tolerated, there are a small number of students so I can read all your code. Because it is on git it's obvious if you copied some else's. If you copy code without citing the source in a comment, this will be considered plagarism. 
-
-
+## Camera Transition 
+The camera transition shader is imitating an old film reel. When adjusting the slider for this effect, a lower slider value will give a ghostlike effct.
 
 
 
