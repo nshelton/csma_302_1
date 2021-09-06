@@ -7,7 +7,7 @@ Shader "Hidden/myShader"
         _Brightness("brightness", Range(0,3)) = 1
         _Speed("speed", Range(0,3)) = 1
         _Contrast("constrast", Range(0,1)) = 1
-        _Tint("tint", Color) = (1,1,1,1)
+     
     }
     SubShader
     {
@@ -35,9 +35,7 @@ Shader "Hidden/myShader"
                 float4 vertex : SV_POSITION;
             };
 
-            half4 _Tint;
-
-            v2f vert (appdata v)
+            v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -54,9 +52,7 @@ Shader "Hidden/myShader"
             float _Contrast;
             float _Grain;
             float _Shift;
-
-
-
+          
             fixed4 blur(float2 uv) {
                 fixed4 average = fixed4(0, 0, 0, 0);
 
@@ -69,16 +65,14 @@ Shader "Hidden/myShader"
                 return average / 11.0;
             }
 
-            //half3 AdjustContrastCurve(half3 color, half contrast) {
-              //  return pow(abs(color * 2 - 1), 1 / max(contrast, 0.0001)) * sign(color - 0.5) + 0.5;
-            //}
-
+           //contrast
             half3 AdjustContrast(half3 color, half contrast) {
                  return saturate(lerp(half3(0.5, 0.5, 0.5), color, contrast));
                 }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag(v2f i) : SV_Target
             {
+                //shift
                 float2 offset = float2(_Shift / _width, 0);
 
                 float colorR = tex2D(_MainTex, i.uv + offset).r;
@@ -88,20 +82,20 @@ Shader "Hidden/myShader"
                 fixed4 col = fixed4(colorR, colorG, colorB, 1);
                 //col = col + col2;
 
-                // just invert the colors
-                
+                //invert
                 col.rgb = lerp(col.rgb, 1 - col.rgb, _Invert);
                 col.rgb = AdjustContrast(col.rgb, _Contrast);
 
-                //col *= _Tint;
-
-                //col *= _Brightness;
-                //col *= ((sin(_Time.z) + 1) / 2) * _Speed;
+                col *= _Brightness;
+                col *= ((sin(_Time.z) + 1) / 2) * _Speed;
 
                 col.rgb += float3(SimplexNoise(i.uv * 15), SimplexNoise(i.uv * 15 + 999.9), SimplexNoise(i.uv * 15 + 124.5)) * _Grain;
 
+                
+
                 return col;
             }
+
             ENDCG
         }
     }

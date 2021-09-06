@@ -278,8 +278,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _output: {fileID: 8400000, guid: a4532f1ae63090b44b6fbdbd155dbcdc, type: 2}
   _devices: []
-  _selectedDevice: 1
+  _selectedDevice: 2
   _effectMaterial: {fileID: 2100000, guid: 913f0791c63e04a47be9c394edcce5d8, type: 2}
+  _Invert: 0
+  _Brightness: 0
+  _Speed: 0
+  _Blur: 0
+  _Grain: 0
+  _Contrast: 0
+  _Shift: 0
 --- !u!4 &1816892654
 Transform:
   m_ObjectHideFlags: 0
