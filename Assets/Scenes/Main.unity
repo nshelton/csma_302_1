@@ -280,6 +280,10 @@ MonoBehaviour:
   _devices: []
   _selectedDevice: 1
   _effectMaterial: {fileID: 2100000, guid: 8b53dd8d63f24d74d9b7da407fe16f2b, type: 2}
+  _Invert: 0
+  _Color_shift: 0
+  _Blur: 0
+  _Displace: 0
 --- !u!4 &1816892654
 Transform:
   m_ObjectHideFlags: 0
