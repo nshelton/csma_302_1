@@ -7,9 +7,7 @@ WU Fall 2021 | CSMA 302 | Project #1
 
 This is an effect that accesses the color channels in different orders. In order to see this effect, drag the slider named "Swizzle" in the inspector during runtime.
 
-From 0 - <1, color channels are in rgba
-From 1 - <2, color channels are in gbra
-At 2, color channels are in brga
+From 0 - <1, color channels are in rgba | From 1 - <2, color channels are in gbra | At 2, color channels are in brga
 
 
 ## Color Shifting
