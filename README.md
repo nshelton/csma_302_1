@@ -70,3 +70,7 @@ Offsets each value of rgb in order to get a cool effect where the colors are sli
 
 Instructions: Drag and drop the custom image effect onto the material called myMaterial and make sure the webcam script is using myMaterial as its texture. Hit play and make sure the brightness is not 0 as well as the contrast in the inspector of the webcam under the webcam script to view the result.
 
+
+
+# Favorite Image Effect Combination
+![ImageEffectScreenshot](https://user-images.githubusercontent.com/57106179/132158895-65d7585f-d1eb-4a85-8f58-e39603569eaf.png)
